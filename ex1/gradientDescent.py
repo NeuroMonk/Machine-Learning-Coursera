@@ -7,9 +7,8 @@ def gradientDescent(X, y, theta, alpha, num_iters):
     J_history = np.zeros((num_iters, 1));
 
     for iter in range(num_iters):
-        h = (np.dot(X, theta) - y) 
-        h = np.multiply(h, X);
-        theta = theta - ((alpha/m) * np.sum(h, axis = 0)).T
+        h = np.sum((np.dot(X, theta) - y) * X, axis = 0)
+        theta = theta - ((alpha/m) * h)[np.newaxis].T;
         J_history[iter] = computeCost(X, y, theta)
-
     return theta, J_history
+
