@@ -2,5 +2,5 @@
 Course assigments reimplemetned using python
 
 ### Numpy for Matlab users 
-Here is a good beggining point to start working with numpy. 
+Here is a good beginning  point to start working with numpy. 
 https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html
