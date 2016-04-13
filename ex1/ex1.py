@@ -17,7 +17,6 @@ m = len(y)
 plt.plot(X, y, 'rx')
 plt.ylabel("Profit in $10,000s")
 plt.xlabel("Population of city in 10,000s'")
-#plt.show()
 
 X = np.concatenate((np.ones((m, 1)), X), axis =1 )
 
@@ -37,7 +36,6 @@ predict2 = np.dot([1, 7], theta)* 10000
 theta0_vals = np.linspace(-10, 10, 100)
 theta1_vals = np.linspace(-1, 4, 100)
 
-
 J_vals = np.zeros((len(theta0_vals), len(theta1_vals)))
 
 for i in range(len(theta0_vals)):
@@ -45,10 +43,11 @@ for i in range(len(theta0_vals)):
         t = np.array([theta0_vals[i], theta1_vals[j]])
         J_vals[i,j] = computeCost(X, y, t)
 
+J_vals = J_vals.T
 theta0_vals, theta1_vals = np.meshgrid(theta0_vals, theta1_vals)
 fig = plt.figure()
 ax = fig.gca(projection='3d')
-surf = ax.plot_surface(theta0_vals, theta1_vals, J_vals.T, rstride=10, cstride=10, cmap=cm.coolwarm)
-#cset = ax.contour(theta0_vals, theta1_vals, J_vals.T)
-
+ax.set_zlim(-10000, 80000)
+surf = ax.plot_surface(theta0_vals, theta1_vals, J_vals, rstride=5, cstride=5, alpha=0.6, cmap=cm.rainbow, vmin = -10000)
+cset = ax.contour(theta0_vals, theta1_vals, J_vals, np.logspace(1, 5, 30), zdir='z',offset=-10000, cmap=cm.rainbow)
 plt.show()
