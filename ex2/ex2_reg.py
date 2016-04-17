@@ -6,6 +6,7 @@ from plotData import plotData
 from plotDecisionBoundary import plotDecisionBoundary
 from mapFeature import mapFeature
 from costFunctionReg import costFunctionReg
+from predict import predict
 
 data = np.loadtxt("ex2data2.txt", usecols=(0,1,2), delimiter=',',dtype=None)
 
@@ -27,5 +28,7 @@ theta = np.zeros((1, n))
 options = {'full_output': True, 'retall': True}
 theta, cost, _, _, _, _, _, allvecs = fmin_bfgs(lambda t: costFunctionReg(X, y, t, l), theta, maxiter=400, **options)
 plotDecisionBoundary(X, y, theta)
-plt.show()
+#plt.show()
 
+p = predict(X, theta[np.newaxis])[np.newaxis]
+print np.mean((p.T == y)) * 100
