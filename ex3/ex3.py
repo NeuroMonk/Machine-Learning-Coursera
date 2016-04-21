@@ -10,6 +10,18 @@ data = sio.loadmat("ex3data1.mat")
 X = np.array(data['X'])
 y = np.array(data['y'])
 
-displayData(X)
+input_layer_size = 400;
+num_labels = 10;
+
+m, n = X.shape
+l = 0.1;
+
+
+rand_indices =  np.random.permutation(m)
+sel = X[rand_indices[0:101], :]
+
+displayData(sel)
+
+
 
 

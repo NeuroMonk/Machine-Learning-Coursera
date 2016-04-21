@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def displayData(X, example_width=None):
 
@@ -26,11 +27,14 @@ def displayData(X, example_width=None):
                 break
 
             max_val = np.max(np.abs(X[curr_ex, :]))
-            display_array[pad + (j - 1) * (example_height + pad) + range(1, example_height),\
-                          pad + (i - 1) * (example_width + pad) + range(1, example_width)] =\
-                          np.reshape(X[curr_ex, :], example_height, example_width) / max_val
+            display_array[np.ix_(pad + (j - 1) * (example_height + pad) + range(example_height),\
+                          pad + (i - 1) * (example_width + pad) + range(example_width))] =\
+                          X[curr_ex, :].reshape(example_height, example_width) / max_val
             
             curr_ex = curr_ex + 1
 
         if curr_ex>m:
             break
+
+    plt.imshow(display_array.T, cmap=plt.cm.gray)
+    plt.show()
