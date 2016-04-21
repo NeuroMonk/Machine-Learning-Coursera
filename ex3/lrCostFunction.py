@@ -13,6 +13,15 @@ def lrCostFunction(X, y, theta, l):
     reg = (l/(2*m) * sum(np.delete(theta.T, 0, 0)  ** 2))
     J = J + reg   
 
-    #grad = (1/m) * np.sum((h - y) * X, axis = 0) + (l/m) * theta
-   
     return J
+
+def lrGrad(X, y, theta, l):
+
+    theta = theta[np.newaxis, : ]
+    m = len(y)
+    h = sigmoid(np.dot(X, theta.T));
+    
+    theta[0][0] = 0
+    grad = (1/m) * np.sum((h - y) * X, axis = 0) + (l/m) * theta
+   
+    return grad.T
