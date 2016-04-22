@@ -1,7 +1,8 @@
 import numpy as np
 import sys
 from lrCostFunction import lrCostFunction, lrGrad
-from oneVsAll import oneVsAll
+from oneVsAll import oneVsAll, oneVsAll_fmin_cg
+import scipy.io as sio
 
 if __name__ == "__main__":
     
@@ -34,5 +35,10 @@ if __name__ == "__main__":
     l = 0.1
     
     print oneVsAll(X, y, num_labels, l)
+    print "\n"
+    print oneVsAll_fmin_cg(X, y, num_labels, l)
+
+
+
 
 
