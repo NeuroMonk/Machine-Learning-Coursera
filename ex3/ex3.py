@@ -53,7 +53,6 @@ X = np.concatenate((np.ones((X.shape[0], 1)), X), axis=1);
 data = sio.loadmat("thetas.mat")
 thetas = np.array(data['thetas'])
 
-
 pred = predictOneVsAll(X, thetas)
 print np.mean((pred.T == y)) * 100
 
